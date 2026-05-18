@@ -12,11 +12,6 @@
   - Allowed only in allowed modules
   - Not allowed
 
-## โครงสร้างไฟล์
-
-- โมดูล: `view_auto_fields/`
-- ไฟล์ zip สำหรับติดตั้ง: `C:\odoo\NEW APP CUSTOM BY ARM\view_auto_fields_15.0.zip`
-
 ## เอกสาร
 
 - คู่มือติดตั้ง: INSTALL.md

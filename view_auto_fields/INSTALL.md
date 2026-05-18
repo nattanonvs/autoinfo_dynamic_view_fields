@@ -4,9 +4,9 @@
 
 มี 2 วิธี
 
-### วิธี A: ติดตั้งจาก zip (แนะนำสำหรับส่งมอบ)
+### วิธี A: ติดตั้งจาก zip
 
-1. นำไฟล์ `view_auto_fields_15.0.zip` ไปไว้บนเครื่องเซิร์ฟเวอร์
+1. นำไฟล์ `view_auto_field.zip` ไปไว้บนเครื่องเซิร์ฟเวอร์
 2. แตกไฟล์ zip จะได้โฟลเดอร์ `view_auto_fields`
 3. นำโฟลเดอร์ `view_auto_fields` ไปวางใน addons path ของ Odoo (เช่น `/var/odoo/custom_addons/`)
 4. ตรวจสอบว่า `odoo.conf` มี addons_path ชี้ไปยังโฟลเดอร์นั้นแล้ว
