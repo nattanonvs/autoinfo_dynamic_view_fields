@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="module_category_view_auto_fields" model="ir.module.category">
+            <field name="name">Views</field>
+            <field name="sequence">90</field>
+        </record>
+
+        <record id="group_view_auto_fields_all" model="res.groups">
+            <field name="name">Auto View Fields: Allowed in all modules</field>
+            <field name="category_id" ref="module_category_view_auto_fields"/>
+        </record>
+
+        <record id="group_view_auto_fields_restricted" model="res.groups">
+            <field name="name">Auto View Fields: Allowed only in allowed modules</field>
+            <field name="category_id" ref="module_category_view_auto_fields"/>
+        </record>
+
+        <record id="group_view_auto_fields_none" model="res.groups">
+            <field name="name">Auto View Fields: Not allowed</field>
+            <field name="category_id" ref="module_category_view_auto_fields"/>
+        </record>
+    </data>
+</odoo>

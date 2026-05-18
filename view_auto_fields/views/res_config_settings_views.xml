@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit_view_auto_fields" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.view.auto.fields</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Auto View Fields" string="Auto View Fields" data-key="view_auto_fields">
+                    <h2>Auto View Fields</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="view_auto_fields_enabled"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="view_auto_fields_enabled"/>
+                                <div class="text-muted">
+                                    Add optional columns in List and fields in Search from Form view.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('view_auto_fields_enabled', '=', False)]}">
+                            <div class="o_setting_right_pane">
+                                <label for="view_auto_fields_allowed_modules"/>
+                                <div class="text-muted">
+                                    Used only when a user sets policy to "Allowed only in allowed modules".
+                                </div>
+                                <field name="view_auto_fields_allowed_modules" placeholder="sale,crm,stock"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('view_auto_fields_enabled', '=', False)]}">
+                            <div class="o_setting_right_pane">
+                                <label for="view_auto_fields_allowed_models"/>
+                                <div class="text-muted">
+                                    Fallback list when a view has no external id module.
+                                </div>
+                                <field name="view_auto_fields_allowed_models" placeholder="sale.order,res.partner"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
