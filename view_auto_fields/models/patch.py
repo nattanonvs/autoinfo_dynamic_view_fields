@@ -134,16 +134,24 @@ def _add_optional_fields_to_tree(tree_arch, field_names):
     if tree is None:
         return None, False
 
+    changed = False
+    for node in tree.xpath("./field[@name]"):
+        if "optional" in node.attrib:
+            continue
+        if node.get("invisible") in {"1", "True", "true"}:
+            continue
+        node.set("optional", "show")
+        changed = True
+
     existing = {n.get("name") for n in tree.xpath(".//field[@name]")}
-    added = False
     for name in field_names:
         if name in existing:
             continue
         etree.SubElement(tree, "field", name=name, optional="hide")
         existing.add(name)
-        added = True
+        changed = True
 
-    return root, added
+    return root, changed
 
 
 def _add_fields_to_search(search_arch, field_names):
@@ -185,6 +193,11 @@ def _patched_load_views(self, views, options=None):
     if not list_allowed and not search_allowed:
         return result
 
+    if list_allowed:
+        root, changed = _add_optional_fields_to_tree(list_view.get("arch", ""), [])
+        if changed:
+            _postprocess_view(self, list_view, root)
+
     form_arch = (fields_views.get("form") or {}).get("arch")
     if not form_arch:
         try:
@@ -193,11 +206,7 @@ def _patched_load_views(self, views, options=None):
             return result
 
     list_field_names, search_field_names = _extract_form_fields(self, form_arch)
-    if not list_field_names and not search_field_names:
-        return result
-
     if list_allowed and list_field_names:
-        list_view = list_view or {}
         root, changed = _add_optional_fields_to_tree(list_view.get("arch", ""), list_field_names)
         if changed:
             _postprocess_view(self, list_view, root)
