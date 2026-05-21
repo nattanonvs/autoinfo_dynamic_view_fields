@@ -13,5 +13,13 @@
             <field name="key">view_auto_fields.allowed_models</field>
             <field name="value"></field>
         </record>
+        <record id="ir_config_parameter_view_auto_fields_filter_active_fields" model="ir.config_parameter">
+            <field name="key">view_auto_fields.filter_active_fields</field>
+            <field name="value">0</field>
+        </record>
+        <record id="ir_config_parameter_view_auto_fields_active_fields_cache_hours" model="ir.config_parameter">
+            <field name="key">view_auto_fields.active_fields_cache_hours</field>
+            <field name="value">24</field>
+        </record>
     </data>
 </odoo>

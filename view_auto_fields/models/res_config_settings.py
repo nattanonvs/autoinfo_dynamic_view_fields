@@ -16,3 +16,12 @@ class ResConfigSettings(models.TransientModel):
         string="Allowed models (comma-separated)",
         config_parameter="view_auto_fields.allowed_models",
     )
+    view_auto_fields_filter_active_fields = fields.Boolean(
+        string="Use only active fields (has data)",
+        config_parameter="view_auto_fields.filter_active_fields",
+    )
+    view_auto_fields_active_fields_cache_hours = fields.Integer(
+        string="Active fields cache (hours)",
+        config_parameter="view_auto_fields.active_fields_cache_hours",
+        default=24,
+    )

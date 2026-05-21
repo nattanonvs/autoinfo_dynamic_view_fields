@@ -1,6 +1,6 @@
 {
     "name": "Auto View Fields",
-    "version": "15.0.1.1.0",
+    "version": "15.0.1.2.0",
     "depends": ["base", "web"],
     "data": [
         "views/res_users_cleanup_views.xml",

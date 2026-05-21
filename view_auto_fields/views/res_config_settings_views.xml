@@ -21,6 +21,26 @@
                             </div>
                         </div>
                         <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('view_auto_fields_enabled', '=', False)]}">
+                            <div class="o_setting_left_pane">
+                                <field name="view_auto_fields_filter_active_fields"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="view_auto_fields_filter_active_fields"/>
+                                <div class="text-muted">
+                                    Add only fields that have data in database (stored fields).
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': ['|', ('view_auto_fields_enabled', '=', False), ('view_auto_fields_filter_active_fields', '=', False)]}">
+                            <div class="o_setting_right_pane">
+                                <label for="view_auto_fields_active_fields_cache_hours"/>
+                                <div class="text-muted">
+                                    Cache duration for active fields detection.
+                                </div>
+                                <field name="view_auto_fields_active_fields_cache_hours"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('view_auto_fields_enabled', '=', False)]}">
                             <div class="o_setting_right_pane">
                                 <label for="view_auto_fields_allowed_modules"/>
                                 <div class="text-muted">
