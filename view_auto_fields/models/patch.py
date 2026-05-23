@@ -33,6 +33,34 @@ _SEARCH_ALLOWED_TYPES = {
 }
 
 _ACTIVE_FIELDS_CACHE = {}
+_TECHNICAL_FIELD_PREFIXES = (
+    "activity_",
+    "message_",
+)
+_TECHNICAL_FIELD_NAMES = {
+    "__last_update",
+    "create_date",
+    "create_uid",
+    "display_name",
+    "id",
+    "message_attachment_count",
+    "message_channel_ids",
+    "message_follower_ids",
+    "message_has_error",
+    "message_has_error_counter",
+    "message_has_sms_error",
+    "message_ids",
+    "message_is_follower",
+    "message_main_attachment_id",
+    "message_needaction",
+    "message_needaction_counter",
+    "message_partner_ids",
+    "message_unread",
+    "message_unread_counter",
+    "website_message_ids",
+    "write_date",
+    "write_uid",
+}
 
 
 def _param_truthy(value):
@@ -199,6 +227,71 @@ def _filter_active_fields(model, field_names):
     return non_stored + [name for name in stored if name in active_stored]
 
 
+def _reduction_settings(model):
+    env = model.env
+    context = model._context
+
+    hide_technical = context.get("view_auto_fields_hide_technical_fields")
+    if hide_technical is None:
+        hide_technical = _param_truthy(
+            env["ir.config_parameter"].sudo().get_param("view_auto_fields.hide_technical_fields", "1")
+        )
+
+    scope = context.get("view_auto_fields_reduction_scope")
+    if not scope:
+        scope = env["ir.config_parameter"].sudo().get_param("view_auto_fields.reduction_scope", "both") or "both"
+
+    preset = context.get("view_auto_fields_max_fields_preset")
+    if preset is None:
+        preset = env["ir.config_parameter"].sudo().get_param("view_auto_fields.max_fields_preset", "50")
+
+    custom = context.get("view_auto_fields_max_fields_custom")
+    if custom is None:
+        custom = env["ir.config_parameter"].sudo().get_param("view_auto_fields.max_fields_custom", "50")
+
+    max_fields = 0
+    try:
+        if preset == "custom":
+            max_fields = int(custom or 0)
+        else:
+            max_fields = int(preset or 0)
+    except Exception:
+        max_fields = 0
+
+    if max_fields < 0:
+        max_fields = 0
+
+    if scope not in {"both", "list", "search"}:
+        scope = "both"
+
+    return bool(hide_technical), scope, max_fields
+
+
+def _is_technical_field(field_name):
+    if field_name in _TECHNICAL_FIELD_NAMES:
+        return True
+    for prefix in _TECHNICAL_FIELD_PREFIXES:
+        if field_name.startswith(prefix):
+            return True
+    return False
+
+
+def _apply_reduction(model, field_names, kind):
+    if not field_names:
+        return field_names
+    hide_technical, scope, max_fields = _reduction_settings(model)
+    if scope not in {"both", kind}:
+        return field_names
+
+    if hide_technical:
+        field_names = [n for n in field_names if not _is_technical_field(n)]
+
+    if max_fields:
+        field_names = field_names[:max_fields]
+
+    return field_names
+
+
 def _extract_form_fields(model, form_arch):
     try:
         root = etree.fromstring(form_arch)
@@ -321,6 +414,8 @@ def _patched_load_views(self, views, options=None):
     list_field_names, search_field_names = _extract_form_fields(self, form_arch)
     list_field_names = _filter_active_fields(self, list_field_names)
     search_field_names = _filter_active_fields(self, search_field_names)
+    list_field_names = _apply_reduction(self, list_field_names, "list")
+    search_field_names = _apply_reduction(self, search_field_names, "search")
     if list_allowed and list_field_names:
         root, changed = _add_optional_fields_to_tree(list_view.get("arch", ""), list_field_names)
         if changed:

@@ -21,5 +21,21 @@
             <field name="key">view_auto_fields.active_fields_cache_hours</field>
             <field name="value">24</field>
         </record>
+        <record id="ir_config_parameter_view_auto_fields_hide_technical_fields" model="ir.config_parameter">
+            <field name="key">view_auto_fields.hide_technical_fields</field>
+            <field name="value">1</field>
+        </record>
+        <record id="ir_config_parameter_view_auto_fields_reduction_scope" model="ir.config_parameter">
+            <field name="key">view_auto_fields.reduction_scope</field>
+            <field name="value">both</field>
+        </record>
+        <record id="ir_config_parameter_view_auto_fields_max_fields_preset" model="ir.config_parameter">
+            <field name="key">view_auto_fields.max_fields_preset</field>
+            <field name="value">50</field>
+        </record>
+        <record id="ir_config_parameter_view_auto_fields_max_fields_custom" model="ir.config_parameter">
+            <field name="key">view_auto_fields.max_fields_custom</field>
+            <field name="value">50</field>
+        </record>
     </data>
 </odoo>

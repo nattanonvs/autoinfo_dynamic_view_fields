@@ -40,6 +40,41 @@
                                 <field name="view_auto_fields_active_fields_cache_hours"/>
                             </div>
                         </div>
+                        <div class="col-12 col-lg-6 o_setting_box" groups="base.group_system,view_auto_fields.group_view_auto_fields_settings_manager" attrs="{'invisible': [('view_auto_fields_enabled', '=', False)]}">
+                            <div class="o_setting_right_pane">
+                                <label for="view_auto_fields_reduction_scope"/>
+                                <div class="text-muted">
+                                    Limit and hide rules can apply to Columns, Search, or both.
+                                </div>
+                                <field name="view_auto_fields_reduction_scope"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" groups="base.group_system,view_auto_fields.group_view_auto_fields_settings_manager" attrs="{'invisible': [('view_auto_fields_enabled', '=', False)]}">
+                            <div class="o_setting_left_pane">
+                                <field name="view_auto_fields_hide_technical_fields"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="view_auto_fields_hide_technical_fields"/>
+                                <div class="text-muted">
+                                    Hide mail/activity/audit fields from auto add list.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" groups="base.group_system,view_auto_fields.group_view_auto_fields_settings_manager" attrs="{'invisible': [('view_auto_fields_enabled', '=', False)]}">
+                            <div class="o_setting_right_pane">
+                                <label for="view_auto_fields_max_fields_preset"/>
+                                <div class="text-muted">
+                                    Max number of fields to auto add from Form.
+                                </div>
+                                <field name="view_auto_fields_max_fields_preset"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" groups="base.group_system,view_auto_fields.group_view_auto_fields_settings_manager" attrs="{'invisible': ['|', ('view_auto_fields_enabled', '=', False), ('view_auto_fields_max_fields_preset', '!=', 'custom')]}">
+                            <div class="o_setting_right_pane">
+                                <label for="view_auto_fields_max_fields_custom"/>
+                                <field name="view_auto_fields_max_fields_custom"/>
+                            </div>
+                        </div>
                         <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('view_auto_fields_enabled', '=', False)]}">
                             <div class="o_setting_right_pane">
                                 <label for="view_auto_fields_allowed_modules"/>

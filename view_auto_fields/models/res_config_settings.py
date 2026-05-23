@@ -25,3 +25,34 @@ class ResConfigSettings(models.TransientModel):
         config_parameter="view_auto_fields.active_fields_cache_hours",
         default=24,
     )
+    view_auto_fields_hide_technical_fields = fields.Boolean(
+        string="Hide technical/system fields",
+        config_parameter="view_auto_fields.hide_technical_fields",
+    )
+    view_auto_fields_reduction_scope = fields.Selection(
+        [
+            ("both", "Columns + Search"),
+            ("list", "Columns only"),
+            ("search", "Search only"),
+        ],
+        string="Apply reduction to",
+        config_parameter="view_auto_fields.reduction_scope",
+        default="both",
+    )
+    view_auto_fields_max_fields_preset = fields.Selection(
+        [
+            ("0", "Unlimited"),
+            ("30", "30"),
+            ("50", "50"),
+            ("80", "80"),
+            ("custom", "Custom"),
+        ],
+        string="Max fields to auto add",
+        config_parameter="view_auto_fields.max_fields_preset",
+        default="50",
+    )
+    view_auto_fields_max_fields_custom = fields.Integer(
+        string="Custom max fields",
+        config_parameter="view_auto_fields.max_fields_custom",
+        default=50,
+    )
