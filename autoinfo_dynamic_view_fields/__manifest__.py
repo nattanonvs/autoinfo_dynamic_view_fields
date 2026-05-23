@@ -1,6 +1,6 @@
 {
-    "name": "Auto View Fields",
-    "version": "15.0.1.3.0",
+    "name": "AutoInfo Dynamic View Fields",
+    "version": "15.0.1.4.0",
     "depends": ["base", "web"],
     "data": [
         "views/res_users_cleanup_views.xml",

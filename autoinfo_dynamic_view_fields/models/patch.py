@@ -78,6 +78,13 @@ def _csv_set(value):
     return set(items)
 
 
+def _has_group(user, xmlid):
+    try:
+        return user.has_group(xmlid)
+    except Exception:
+        return False
+
+
 def _get_view_module(env, view_id):
     if not view_id:
         return None
@@ -99,11 +106,18 @@ def _is_enabled(model, view_dict=None):
         return False
 
     user = env.user
-    if user.has_group("view_auto_fields.group_view_auto_fields_none"):
+    if _has_group(user, "autoinfo_dynamic_view_fields.group_view_auto_fields_none") or _has_group(
+        user, "view_auto_fields.group_view_auto_fields_none"
+    ):
         return False
-    if user.has_group("view_auto_fields.group_view_auto_fields_all"):
+    if _has_group(user, "autoinfo_dynamic_view_fields.group_view_auto_fields_all") or _has_group(
+        user, "view_auto_fields.group_view_auto_fields_all"
+    ):
         return True
-    if not user.has_group("view_auto_fields.group_view_auto_fields_restricted"):
+    if not (
+        _has_group(user, "autoinfo_dynamic_view_fields.group_view_auto_fields_restricted")
+        or _has_group(user, "view_auto_fields.group_view_auto_fields_restricted")
+    ):
         return True
 
     allowed_modules = _csv_set(env["ir.config_parameter"].sudo().get_param("view_auto_fields.allowed_modules", ""))

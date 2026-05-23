@@ -7,22 +7,22 @@
         </record>
 
         <record id="group_view_auto_fields_all" model="res.groups">
-            <field name="name">Auto View Fields: Allowed in all modules</field>
+            <field name="name">AutoInfo Dynamic View Fields: Allowed in all modules</field>
             <field name="category_id" ref="module_category_view_auto_fields"/>
         </record>
 
         <record id="group_view_auto_fields_restricted" model="res.groups">
-            <field name="name">Auto View Fields: Allowed only in allowed modules</field>
+            <field name="name">AutoInfo Dynamic View Fields: Allowed only in allowed modules</field>
             <field name="category_id" ref="module_category_view_auto_fields"/>
         </record>
 
         <record id="group_view_auto_fields_none" model="res.groups">
-            <field name="name">Auto View Fields: Not allowed</field>
+            <field name="name">AutoInfo Dynamic View Fields: Not allowed</field>
             <field name="category_id" ref="module_category_view_auto_fields"/>
         </record>
 
         <record id="group_view_auto_fields_settings_manager" model="res.groups">
-            <field name="name">Auto View Fields: Settings manager</field>
+            <field name="name">AutoInfo Dynamic View Fields: Settings manager</field>
             <field name="category_id" ref="module_category_view_auto_fields"/>
         </record>
     </data>
