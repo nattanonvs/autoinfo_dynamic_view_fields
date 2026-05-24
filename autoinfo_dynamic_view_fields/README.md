@@ -26,6 +26,7 @@
 
 1) เปิดใช้งาน: Settings → AutoInfo Dynamic View Fields  
 2) ในหน้า List/Tree: กดไอคอน “คอลัมน์” แล้วเลือกเพิ่ม/ซ่อนคอลัมน์ที่ต้องการ  
+   - มีช่องค้นหาในเมนูคอลัมน์ เพื่อพิมพ์ค้นหา field ได้ทันที
 3) ในหน้า Search: ใช้ Advanced Search จะเห็น field เพิ่มเติมตาม Form view  
 4) หากรายการยาวเกินไป ให้ตั้งค่า:
    - Use only active fields (has data)
