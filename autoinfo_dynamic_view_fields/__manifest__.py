@@ -1,6 +1,6 @@
 {
     "name": "AutoInfo Dynamic View Fields",
-    "version": "15.0.1.4.0",
+    "version": "15.0.1.4.1",
     "depends": ["base", "web"],
     "assets": {
         "web.assets_backend": [
