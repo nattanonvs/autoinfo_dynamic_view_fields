@@ -1,9 +1,13 @@
 odoo.define("autoinfo_dynamic_view_fields.optional_columns_search", function (require) {
     "use strict";
 
-    const $ = require("jquery");
     const core = require("web.core");
     const ListRenderer = require("web.ListRenderer");
+
+    const $ = window.$ || window.jQuery;
+    if (!$) {
+        return;
+    }
 
     const _t = core._t;
     const original = ListRenderer.prototype._renderOptionalColumnsDropdown;
@@ -48,4 +52,3 @@ odoo.define("autoinfo_dynamic_view_fields.optional_columns_search", function (re
         },
     });
 });
-
