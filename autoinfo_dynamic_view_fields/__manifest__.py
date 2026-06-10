@@ -1,6 +1,11 @@
 {
     "name": "AutoInfo Dynamic View Fields",
-    "version": "15.0.1.4.2",
+    "version": "15.0.1.5.1",
+    "summary": "Dynamic List/Search fields from Form view with governance controls",
+    "category": "Tools",
+    "author": "Odoo S.A. and The Auto-Info Co., Ltd.",
+    "maintainer": "The Auto-Info Co., Ltd.",
+    "license": "LGPL-3",
     "depends": ["base", "web"],
     "assets": {
         "web.assets_backend": [

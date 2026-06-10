@@ -20,7 +20,10 @@
 
 ## เอกสาร
 
-- คู่มือติดตั้ง: INSTALL.md
+- คู่มือติดตั้ง: INSTALL.md และ docs/installation_guide.md
+- คู่มือการตั้งค่า: docs/configuration_guide.md
+- Troubleshooting: docs/troubleshooting.md
+- Timeline/Change Log: docs/timeline_changelog.md
 
 ## คู่มือใช้งาน (สรุป)
 
